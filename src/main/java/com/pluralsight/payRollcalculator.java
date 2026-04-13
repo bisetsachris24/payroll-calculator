@@ -5,7 +5,6 @@ public class payRollcalculator {
     public static void main(String[] args) {
 
         Scanner input = new Scanner(System.in);
-
         // Prompt user for name
         System.out.print("Enter your name: ");
         String name = input.nextLine();
@@ -23,8 +22,32 @@ public class payRollcalculator {
         double grossPay = hoursWorked * payRate;
         // Printing the final gross pay
         System.out.println("The gross pay for " + name +
-                "equal to $ " + grossPay);
+                " is equal to $ " + grossPay);
 
+        System.out.println( name + "overtime is " + totalPay( hoursWorked,payRate) );
 
     }
+
+    public static double totalPay (double hoursWorked, double payRate) {
+
+        double totalPay = 0;
+        // creating If statement
+        // (hoursWorked -40) * (payRate * 1.5) +(payRate * hoursWorked)
+        // Overtime logic
+        if (hoursWorked <= 40) {
+            totalPay = hoursWorked * payRate;
+
+        } else {
+            double regularPay = 40 * payRate;
+            double overtimeHours = hoursWorked - 40;
+            double overtimePay = overtimeHours * payRate * 1.5;
+
+            totalPay = regularPay + overtimePay;
+
+        }
+        return totalPay;
+    }
+
+
 }
+
